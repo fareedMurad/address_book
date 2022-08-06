@@ -1,13 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
-import AddressForm from "./AddressForm";
-import EditableTable from "./AddressList";
+import AddressForm from "./components/AddressForm";
+import EditableTable from "./components/AddressList";
 
 function App() {
   return (
     <div className="App">
-      <AddressForm />
       <EditableTable />
+      <AddressForm />
     </div>
   );
 }

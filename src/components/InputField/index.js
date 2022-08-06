@@ -18,7 +18,6 @@ const InputField = (props) => {
             name={name}
             placeholder={placeholder}
             tabIndex={tabIndex}
-            required
           ></textarea>
         </fieldset>
       ) : (
@@ -30,7 +29,6 @@ const InputField = (props) => {
             type={type}
             value={value}
             tabIndex={tabIndex}
-            required
             onChange={onChange}
             autoFocus
           />

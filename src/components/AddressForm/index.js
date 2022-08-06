@@ -1,31 +1,44 @@
 import React, { useState } from "react";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
-import "../Styles/_AddressForm.css";
+import InputField from "../InputField";
+import Button from "../Button";
+import "../../styles/styles.css"
+import { address } from "../../api";
+import Alert from "../Alert";
+import { validateEmail, validatePhone } from "../../utils";
 
 const AddressForm = () => {
-  const [inputFields, setInputFields] = useState([]);
+  const [inputFields, setInputFields] = useState({});
+  const [error, setError] = useState(false)
   const handleChange = (e) => {
+    setError(false)
     setInputFields({
-      [e.target.fname]: e.target.value,
-      [e.target.lname]: e.target.value,
-      [e.target.phone]: e.target.value,
-      [e.target.email]: e.target.value,
-      [e.target.address]: e.target.value,
+      ...inputFields,
+      [e.target.name]: e.target.value,
     });
   };
+
+  const createAddress = async (e) => {
+    e.preventDefault();
+
+    const { fname, lname, email, phone } = inputFields;
+    if (fname || lname || validateEmail(email) || validatePhone(phone))
+      await address.create(inputFields)
+    else setError("Please enter valid values")
+  }
+
+
   return (
     <div className="container">
-      <form id="contact" action="" method="post" onSubmit={(values) => {}}>
+      <form id="contact" action="#" onSubmit={createAddress}>
         <h3>Address Form</h3>
         <h4>Contact us for custom quote</h4>
+        {error ? <Alert message={error} /> : null}
         <InputField
           name="fname"
           placeholder="Your First Name"
           type="text"
           tabIndex="1"
           onChange={handleChange}
-          required
         />
         <InputField
           name="lname"
@@ -33,15 +46,13 @@ const AddressForm = () => {
           type="text"
           tabIndex="1"
           onChange={handleChange}
-          required
         />
         <InputField
           name="phone"
           placeholder="Your Phone Number"
-          type="text"
+          type="number"
           tabIndex="1"
           onChange={handleChange}
-          required
         />
         <InputField
           name="email"
@@ -49,7 +60,6 @@ const AddressForm = () => {
           type="text"
           tabIndex="1"
           onChange={handleChange}
-          required
         />
         <InputField
           name="address"
@@ -57,7 +67,6 @@ const AddressForm = () => {
           type="textarea"
           tabIndex="5"
           onChange={handleChange}
-          required
         />
         <Button
           name="submit"

@@ -35,6 +35,7 @@ body {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="email"],
 input[type="tel"],
 input[type="url"],
@@ -73,6 +74,7 @@ fieldset {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="email"],
 input[type="tel"],
 input[type="url"],
@@ -179,4 +181,18 @@ tr th {
 tr td {
   border: 1px solid #eeeeee;
   text-align: left;
+}
+.__alert {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 400;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.__alert.__alert-error {
+  background-color: rgb(243, 127, 127);
+  color: #fff;
 }
